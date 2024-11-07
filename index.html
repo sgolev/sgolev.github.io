@@ -21,29 +21,45 @@
     ul {
       margin-top: 8px;
     }
+    li {
+      font-size: inherit;
+    }
     a {
       color: lightgray;
+    }
+    .title {
+      font-size: 18vw;
+      text-align: right;
+      line-height: 80%;
+      transform: scaleY(0.8);
+      margin: -3vw 1vw 0 0;
+      color: tomato;
+    }
+    .contacts {
+      position: absolute;
+      left: 2vw;
+      top: 13.5vw;
+      display: inline-block;
+      border: 3px dashed gray;
+      border-radius: 10px;
+      padding: 5px 10px 7px 10px;
+      background: rgb(0 0 0 / 70%);
+    }
+    @media screen and (max-width: 1200px) {
+      .contacts {
+        position: static;
+        margin-top: 1.5vw;
+      }
+    }
+    .lang {
+      font-size: 70%;
+      vertical-align: 15%;
     }
   </style>
 </head>
 <body>
-  <h1 style="
-    font-size: 18vw;
-    text-align: right;
-    line-height: 80%;
-    transform: scaleY(0.8);
-    margin: -3vw 1vw 0 0;
-    color: tomato;
-  ">Stanislav<br>Golev</h1>
-  <div style="
-    position: absolute;
-    left: 2vw;
-    top: 13.5vw;
-    border: 3px dashed gray;
-    border-radius: 10px;
-    padding: 5px 10px 7px 10px;
-    background: rgb(0 0 0 / 70%);
-  ">
+  <h1 class="title">Stanislav Golev</h1>
+  <div class="contacts">
     <h2 style="margin-top: 0;">Contacts:</h2>
     <p>📨 E-mail:&nbsp;&nbsp; <a href="mailto:sa.golev@outlook.com">sa.golev@outlook.com</a> · <a href="mailto:sgolev@nes.ru">sgolev@nes.ru</a></p>
     <p>👋 Telegram: <a href="https://t.me/s_golev">@s_golev</a></p>
@@ -52,10 +68,9 @@
   <div style="margin-left: 1.3vw;">
     <h2>My articles:</h2>
     <ul>
-      <li><a href="https://telegra.ph/Programmnoe-reshenie-zadaniya-2-v-EGEH-po-informatike-06-09">Программное решение задания №2 в ЕГЭ по информатике</a>, 9 June 2024 🇷🇺</li>
-      <li><a href="https://telegra.ph/Sinhronizaciya-fajlov-cherez-pochtovyj-klient-08-13">Синхронизация файлов через почтовый клиент</a>, 14 August 2024 🇷🇺</li>
+      <li><a href="https://telegra.ph/Programmnoe-reshenie-zadaniya-2-v-EGEH-po-informatike-06-09">Программное решение задания №2 в ЕГЭ по информатике</a>, 9 June 2024 <span class="lang">RU</span></li>
+      <li><a href="https://telegra.ph/Sinhronizaciya-fajlov-cherez-pochtovyj-klient-08-13">Синхронизация файлов через почтовый клиент</a>, 14 August 2024 <span class="lang">RU</span></li>
     </ul>
   </div>
 </body>
 </html>
- 
