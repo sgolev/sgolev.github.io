@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stanislav Golev :: Personal Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 92vh;
+      margin: 2vw;
+      font-family: 'IBM Plex Mono', 'Roboto Mono', monospace;
+      color: lightskyblue;
+      background: url(/stars.svg) black;
+      -webkit-text-size-adjust: 100%;
+    }
+    p {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    h2 {
+      margin-bottom: 8px;
+      color: greenyellow;
+    }
+    ul {
+      margin-top: 8px;
+    }
+    a {
+      color: lightgray;
+    }
+    a:hover {
+      color: whitesmoke;
+    }
+    a:active {
+      color: blueviolet;
+    }
+    .content {
+      max-width: 650px;
+    }
+    .title {
+      font-size: 90pt;
+      line-height: 90%;
+      transform: scaleY(0.8);
+      margin: -0.14em 0px 14px -4px;
+      color: tomato;
+    }
+    .contacts {
+      display: inline-block;
+      border: 3px dashed gray;
+      border-radius: 10px;
+      padding: 9px 14px 11px 14px;
+      background: rgb(0 0 0 / 70%);
+    }
+    .contacts h2 {
+      margin-top: 0px;
+    }
+    .lang {
+      font-size: 70%;
+      vertical-align: 12%;
+      margin-left: 0.8em;
+      user-select: none;
+    }
+    .music-player {
+      position: fixed;
+      bottom: -1px;
+      right: -1px;
+      width: 100%;
+      max-width: 330px;
+      height: 42px;
+      border: 0px;
+      border-radius: 4px 0px 0px 0px;
+    }
+    @media screen and (max-width: 1000px) {
+      body {
+        min-height: 0px;
+      }
+    }
+    @media screen and (max-width: 680px) {
+      .content {
+        max-width: 95%;
+      }
+      .title {
+        font-size: 17vw;
+        margin-top: -0.85vw;
+        transform: scaleY(0.9);
+      }
+    }
+    @media screen and (max-width: 600px) {
+      body {
+        font-size: 80%;
+      }
+      ul {
+        padding-left: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <header>
+      <h1 class="title">Stanislav<br>Golev</h1>
+      <div class="contacts">
+        <h2>Contacts:</h2>
+        <p>&#x1F4E8; E-mail:&nbsp;&nbsp; <a href="mailto:sgolev@nes.ru">sgolev@nes.ru</a></p>
+        <p>&#x1F30F; Location: Moscow, Russia</p>
+      </div>
+    </header>
+    <main>
+      <h2>My articles:</h2>
+      <ul>
+        <li><a href="https://telegra.ph/Sinhronizaciya-fajlov-cherez-pochtovyj-klient-08-13">Синхронизация файлов через почтовый клиент</a>, 14 August 2024<span class="lang">RU</span></li>
+        <li><a href="https://telegra.ph/Programmnoe-reshenie-zadaniya-2-v-EGEH-po-informatike-06-09">Программное решение задания №2 в ЕГЭ по информатике</a>, 9 June 2024<span class="lang">RU</span></li>
+      </ul>
+    </main>
+  </div>
+  <iframe class="music-player" src="https://bandcamp.com/EmbeddedPlayer/album=4083358829/size=small/bgcol=000000/linkcol=d3d3d3/track=1698086889/artwork=none/transparent=true/" seamless><a href="https://modernarecords.bandcamp.com/album/waterworld-sixteen-fifty-two">Sixteen Fifty-Two by Jessica Roch</a></iframe>
+</body>
+</html>
