@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "_publications.html" as pubs %}
+{% block title %}{{ SITENAME }} — #{{ tag }}{% endblock %}
+
+{% block content %}
+<h1>#{{ tag }}</h1>
+{# External publications carry no tags, so only local articles appear here #}
+{{ pubs.publication_list(articles, [], SITEURL) }}
+<p><a href="{{ SITEURL }}/{{ INDEX_URL }}">&larr; All articles</a></p>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% import "_publications.html" as pubs %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stanislav Golev :: Personal Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <script>
+    /* Set theme before first paint to avoid a flash of the wrong scheme */
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <style>
+    html, body { margin: 0; padding: 0; }
+    :root {
+      color-scheme: dark;
+      --accent: #9ee06a; --dim: #93a888; --strong: #eef1f5;
+      --bg: #0a0c0f; --rule: rgba(255,255,255,0.12);
+      --card: rgba(255,255,255,0.015); --btn-bg: rgba(47,107,176,0.1);
+      --link-hover: #ffffff;
+      --link-udrl: rgba(198,210,222,0.25);
+      --link-udrl-hover: rgba(255,255,255,0.7);
+    }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --accent: #2f7d1a; --dim: #4d5636; --strong: #171c0f;
+      --bg: #fefefe; --rule: rgba(0,0,0,0.2);
+      --card: rgba(0,0,0,0.025); --btn-bg: rgba(47,125,26,0.08);
+      --link-hover: #000000;
+      --link-udrl: rgba(56,59,62,0.16);
+      --link-udrl-hover: rgba(0,0,0,0.6);
+    }
+    body {
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6vh 5vw;
+      font-family: 'IBM Plex Mono', 'Roboto Mono', monospace;
+      color: #aeb6c2;
+      background-color: var(--bg);
+      background-image: url('/images/stars.svg');
+      -webkit-text-size-adjust: 100%;
+    }
+    html[data-theme="light"] body {
+      background-image: radial-gradient(rgba(0,0,0,0.09) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    a { color: var(--strong); text-decoration-color: var(--link-udrl); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--link-hover); text-decoration-color: var(--link-udrl-hover); }
+    a:active { color: var(--accent); text-decoration-color: var(--accent); }
+    .content { width: 100%; max-width: 860px; }
+    .pathbar { display: flex; align-items: baseline; gap: 0.55em; color: var(--dim); font-size: 13px; letter-spacing: 0.30em; text-transform: uppercase; margin-bottom: 20px; }
+    .pathbar .rule { flex: 1; height: 1px; background: var(--rule); }
+    .title { font-size: 76px; line-height: 0.86; font-weight: 600; letter-spacing: -0.01em; color: var(--accent); transform: scaleY(0.86); transform-origin: left top; margin: 0 0 26px -2px; }
+    .cursor { display: inline-block; width: 0.5em; height: 0.86em; background: var(--accent); margin-left: 0.12em; transform: translateY(0.06em); animation: blink 1.1s step-end infinite; }
+    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    .cols { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 34px; align-items: start; }
+    .label { margin: 0 0 14px; font-size: 13px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim); }
+    .contacts { border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px 20px; background: var(--card); }
+    .rows { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+    .row { display: flex; gap: 10px; }
+    .row .k { color: var(--dim); min-width: 84px; }
+    .row .v { color: var(--strong); }
+    .article-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+    .article-list li { display: flex; flex-direction: column; gap: 3px; }
+    .article-list a { font-size: 15px; line-height: 1.35; }
+    .article-list .meta { font-size: 12.5px; color: var(--dim); letter-spacing: 0.02em; }
+    .article-list .lang {
+      margin-left: 0.5rem;
+      font-size: 0.8em;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 0.05em 0.3em;
+      vertical-align: 0.1em;
+      letter-spacing: 0.03em;
+    }
+    .see-all { display: inline-flex; align-items: center; gap: 0.5em; margin-top: 22px; padding: 9px 16px; font: inherit; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--btn-bg); border: 1px solid var(--accent); border-radius: 8px; cursor: pointer; text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .see-all:hover { background: var(--accent); color: var(--bg); }
+    .music-player { position: fixed; bottom: -1px; right: -1px; width: 100%; max-width: 330px; height: 42px; border: 0; border-radius: 4px 0 0 0; }
+    #theme-toggle {
+      margin-left: auto;
+      border: 1px solid var(--rule);
+      background: var(--btn-bg);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 0.15rem 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    html[data-theme="dark"] .when-light { display: none; }
+    html:not([data-theme="dark"]) .when-dark { display: none; }
+    @media (max-height: 800px) {
+      body { justify-content: start; }
+    }
+    @media (max-width: 780px) {
+      .cols { grid-template-columns: 1fr; }
+      .title { font-size: 16vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="pathbar">
+      <span>// personal page</span>
+      <button id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <span class="when-light">&#9789;</span><span class="when-dark">&#9788;</span>
+      </button>
+    </div>
+
+    <h1 class="title">Stanislav<br>Golev<span class="cursor"></span></h1>
+
+    <div class="cols">
+      <section class="contacts">
+        <h2 class="label">Contacts</h2>
+        <div class="rows">
+          <div class="row"><span class="k">e-mail</span><a href="mailto:sgolev@nes.ru">sgolev@nes.ru</a></div>
+          <div class="row"><span class="k">location</span><span class="v">Moscow, Russia</span></div>
+        </div>
+      </section>
+      <section>
+        <h2 class="label">Articles</h2>
+        {{ pubs.publication_list(articles, EXTERNAL_ARTICLES, format="landing", limit=3) }}
+        <a class="see-all" href="{{ SITEURL }}/{{ INDEX_URL }}">See all articles <span aria-hidden="true">&rarr;</span></a>
+      </section>
+    </div>
+  </div>
+
+  <iframe class="music-player" src="https://bandcamp.com/EmbeddedPlayer/album=4083358829/size=small/bgcol=0a0c0f/linkcol=9ee06a/track=1698086889/artwork=none/transparent=true/" seamless><a href="https://modernarecords.bandcamp.com/album/waterworld-sixteen-fifty-two">Sixteen Fifty-Two by Jessica Roch</a></iframe>
+  <script src="{{ SITEURL }}/theme/js/theme.js"></script>
+</body>
+</html>

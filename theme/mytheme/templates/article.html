@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<article>
+  <h1>{{ article.title }}</h1>
+  <p class="meta">
+    <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%Y-%m-%d') }}</time>
+    {% set words = article.content | striptags | wordcount %}
+    {% set minutes = [((words / (READING_WPM | default(200))) | round(0, "ceil") | int), 1] | max %}
+    <span class="sep">&middot;</span> {{ minutes }} {% if article.lang == "ru" %}мин. чтения{% else %}min read{% endif %}
+    {% if article.tags %}
+      <span class="sep">&middot;</span>
+      {% for tag in article.tags %}<a class="tag" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> {% endfor %}
+    {% endif %}
+  </p>
+
+  {{ article.content }}
+</article>
+
+{% if GISCUS %}
+<section id="comments">
+  <script>
+    /* giscus is injected dynamically so its initial theme matches the
+       site theme chosen before paint; later switches go via postMessage
+       from theme.js */
+    (function () {
+      var s = document.createElement("script");
+      s.src = "https://giscus.app/client.js";
+      s.async = true;
+      s.crossOrigin = "anonymous";
+      var cfg = {
+        "data-repo": "{{ GISCUS.repo }}",
+        "data-repo-id": "{{ GISCUS.repo_id }}",
+        "data-category": "{{ GISCUS.category }}",
+        "data-category-id": "{{ GISCUS.category_id }}",
+        "data-mapping": "pathname",
+        "data-strict": "1",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "top",
+        "data-theme": document.documentElement.dataset.theme === "dark" ? "dark" : "light",
+        "data-lang": "{{ GISCUS.lang }}"
+      };
+      for (var k in cfg) s.setAttribute(k, cfg[k]);
+      document.getElementById("comments").appendChild(s);
+    })();
+  </script>
+</section>
+{% endif %}
+{% endblock %}

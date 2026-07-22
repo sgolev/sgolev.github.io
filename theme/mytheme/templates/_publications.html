@@ -1,0 +1,50 @@
+{# Merges local articles and EXTERNAL_ARTICLES into one chronological list.
+   Sorting uses a string key (YYYYMMDDHHMM) so it works regardless of whether
+   dates are tz-aware (Pelican articles) or naive (config entries).
+   Language: local articles use their Lang: metadata (defaults to DEFAULT_LANG),
+   external entries an optional "lang" key. #}
+{% macro publication_list(articles, external, format=None, siteurl=SITEURL, limit=None) %}
+{% set combined = [] %}
+{% for a in articles or [] %}
+  {% do combined.append({
+       "title": a.title,
+       "url": siteurl ~ "/" ~ a.url,
+       "date": a.date,
+       "sortkey": a.date.strftime("%Y%m%d%H%M"),
+       "source": None,
+       "lang": a.lang | default(DEFAULT_LANG),
+     }) %}
+{% endfor %}
+{% for e in external or [] %}
+  {% do combined.append({
+       "title": e.title,
+       "url": e.url,
+       "date": e.date,
+       "sortkey": e.date.strftime("%Y%m%d%H%M"),
+       "source": e.source,
+       "lang": e.get("lang", DEFAULT_LANG),
+     }) %}
+{% endfor %}
+{% set items = combined | sort(attribute="sortkey", reverse=True) %}
+{% if limit %}
+  {% set items = items[:limit] %}
+{% endif %}
+<ul class="article-list">
+  {% for item in items %}
+  <li>
+    {% if format == "landing" %}
+      <!-- <a href="{{ item.url }}">{{ item.title }}</a>,
+      <time datetime="{{ item.date.strftime('%Y-%m-%d') }}">{{ item.date.strftime('%-d %B %Y') }}</time><span class="lang">{{ item.lang | upper }}</span> -->
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      <span class="meta">
+        <time datetime="{{ item.date.strftime('%Y-%m-%d') }}">{{ item.date.strftime('%d %b %Y') }}</time><span class="lang">{{ item.lang | upper }}</span>
+      </span>
+    {% else %}
+      <time datetime="{{ item.date.strftime('%Y-%m-%d') }}">{{ item.date.strftime('%Y-%m-%d') }}</time>
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      {%- if item.source %}<span class="source">{{ item.source }}</span>{% endif %}<span class="lang">{{ item.lang | upper }}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}

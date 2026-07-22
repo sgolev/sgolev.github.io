@@ -1,0 +1,191 @@
+/* Styles for generated pages only (/blog/ and articles).
+   The landing page (templates/landing.html) carries its own styles. */
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --link: #2f7d1a;
+  --rule: #e2e2e2;
+  --code-bg: #f6f8fa;
+  --code-head-bg: #eef1f4;
+  --btn-bg: #f0f0f0;
+  --width: 46rem;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #161616;
+  --text: #d4d4d4;
+  --muted: #9a9a9a;
+  --link: #9ee06a;
+  --rule: #333333;
+  --code-bg: #1e1e1e; /* VS Code Dark+ editor background */
+  --code-head-bg: #252526; /* Dark+ tab-bar background */
+  --btn-bg: #2a2a2a;
+}
+
+/* The light Pygments style ('vs') assumes a white-ish background;
+   in dark mode the Dark+ block in pygments.css takes over. */
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.site-header, main, .site-footer {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.site-header {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header nav { display: flex; align-items: center; gap: 1.25rem; }
+.site-header nav a { text-decoration: none; color: var(--link); }
+
+main { padding-top: 1.5rem; padding-bottom: 3rem; }
+
+a { color: var(--link); }
+
+h1, h2, h3 { line-height: 1.25; }
+
+.meta, .article-list time { color: var(--muted); font-size: 0.9em; }
+
+.article-list { list-style: none; padding: 0; }
+.article-list li { margin: 0.6rem 0; }
+.article-list time { display: inline-block; width: 7.5rem; }
+.article-list .source { margin-left: 0.5rem; color: var(--muted); font-size: 0.85em; }
+.article-list .lang {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.7em;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.05em 0.3em;
+  vertical-align: 0.1em;
+  letter-spacing: 0.03em;
+}
+
+.meta .sep { margin: 0 0.3em; color: var(--muted); }
+
+.site-name,
+.site-header nav a.site-name {
+  font-weight: 600;
+  font-size: 1.2em;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-decoration: none;
+  margin-right: 0.75rem;
+}
+.site-header nav a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+.tag { color: var(--muted); }
+a.tag { text-decoration: none; }
+a.tag:hover { text-decoration: underline; }
+a.tag::before { content: "#"; }
+
+/* --- Header permalinks (¶ from the toc extension) ---------------------- */
+.headerlink {
+  margin-left: 0.35em;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.7em;
+  opacity: 0;
+  transition: opacity 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.headerlink::after { content: "\00B6"; }
+h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink,
+h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink,
+.headerlink:focus-visible { opacity: 1; }
+@media (hover: none) { .headerlink { opacity: 1; } } /* touch: no hover exists */
+
+@media (max-width: 640px) {
+  .article-list time { width: auto; margin-right: 0.6rem; }
+}
+
+/* --- Code --------------------------------------------------------------- */
+code {
+  font: 0.9em/1.5 ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  background: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+.highlight {
+  background: var(--code-bg);
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+
+.highlight pre { margin: 0; padding: 0.9rem 1rem; }
+.highlight code {
+  background: none;
+  padding: 0;
+  font-size: 0.82em; /* code blocks smaller than body/inline code */
+}
+
+/* --- Theme toggle -------------------------------------------------------- */
+#theme-toggle {
+  margin-left: auto;
+  border: 1px solid var(--rule);
+  background: var(--btn-bg);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+html[data-theme="dark"] .when-light { display: none; }
+html:not([data-theme="dark"]) .when-dark { display: none; }
+
+/* --- Scroll to top -------------------------------------------------------- */
+#to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--btn-bg);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#to-top.visible { opacity: 1; pointer-events: auto; }
+@media (max-width: 640px) { #to-top { display: none; } }
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+#comments { margin-top: 3rem; }
+
+/* --- Code block filename header (```python title="file.py") ------------- */
+.highlight > .filename {
+  display: block;
+  font: 0.78em/1.4 ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  color: var(--muted);
+  background: var(--code-head-bg);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 6px 6px 0 0;
+  padding: 0.45rem 1rem;
+}

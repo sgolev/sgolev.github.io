@@ -1,0 +1,8 @@
+[project]
+name = "sgolev-github-io"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "pelican[markdown]>=4.12.0",
+    "pymdown-extensions>=11.0.1",
+]

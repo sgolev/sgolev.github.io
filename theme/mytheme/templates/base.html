@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  <script>
+    /* Set theme before first paint to avoid a flash of the wrong scheme */
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
+  {% if FEED_ALL_RSS %}
+  <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }}"
+        href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">
+  {% endif %}
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a class="site-name" href="{{ SITEURL }}/">{{ AUTHOR }}</a>
+      <a href="{{ SITEURL }}/{{ INDEX_URL }}">Blog</a>
+      {% if FEED_ALL_RSS %}<a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">RSS</a>{% endif %}
+      <button id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <span class="when-light">&#9789;</span><span class="when-dark">&#9788;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- <footer class="site-footer">
+    <p>&copy; {{ AUTHOR }}</p>
+  </footer> -->
+
+  <button id="to-top" type="button" aria-label="Scroll to top">&#8593;</button>
+  <script src="{{ SITEURL }}/theme/js/theme.js"></script>
+</body>
+</html>
