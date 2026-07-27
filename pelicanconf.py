@@ -128,9 +128,10 @@ READING_WPM = 200
 # ---------------------------------------------------------------------------
 # Fill these in from https://giscus.app after enabling Discussions on the repo
 GISCUS = {
-    "repo": "YOURNAME/YOURREPO",
-    "repo_id": "R_xxxxxxxxxxx",
-    "category": "Comments",
-    "category_id": "DIC_xxxxxxxxxxx",
+    "repo": "sgolev/sgolev.github.io",
+    "repo_id": "R_kgDOO8MARw",
+    "category": "Announcements",
+    "category_id": "DIC_kwDOO8MAR84DBwkW",
     "lang": "en",
+    "loading": "lazy",
 }
