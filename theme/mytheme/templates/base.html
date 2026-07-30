@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
   {% include "partials/common_head.html" %}
+  {% include "partials/meta.html" %}
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
   {% block extra_head %}{% endblock %}

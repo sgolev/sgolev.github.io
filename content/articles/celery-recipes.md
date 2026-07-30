@@ -1,7 +1,6 @@
 Title: Celery: from first task to advanced recipes
 Date: 2026-07-28 02:59 +03:00
 Tags: python, celery
-Summary: Sharing experience with Celery
 
 [Celery](https://github.com/celery/celery) is a mature distributed task queue system for Python. It is useful for integrating various services in a decoupled producer-consumer fashion. In this article, I want to share my experience with Celery. After a brief introduction, I provide code snippets that you can reuse in your projects.
 
