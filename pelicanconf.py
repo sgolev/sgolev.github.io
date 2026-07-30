@@ -93,6 +93,21 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 
 # ---------------------------------------------------------------------------
+# Social / SEO metadata (rendered by partials/meta.html)
+# ---------------------------------------------------------------------------
+# Fallback description for the landing page, /blog/ and tag listings.
+SITEDESCRIPTION = "My blog"
+
+# Site-wide preview image, overridable per article/page with an `Image:` line
+# in the front matter. Site-relative paths get SITEURL prepended; use the size
+# below to match the actual file (1200x630 is the safe default for OG).
+OG_IMAGE = ""  # e.g. "images/og-default.png"
+OG_IMAGE_SIZE = (1200, 630)
+
+# article.lang / DEFAULT_LANG -> og:locale
+OG_LOCALES = {"en": "en_US", "ru": "ru_RU"}
+
+# ---------------------------------------------------------------------------
 # Publications on other websites, merged into the landing and /blog/ lists.
 # Use datetime(...) so entries sort together with local articles.
 # ---------------------------------------------------------------------------
