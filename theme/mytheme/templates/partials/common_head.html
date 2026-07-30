@@ -1,0 +1,18 @@
+<script>
+  /* Set theme before first paint to avoid a flash of the wrong scheme */
+  (function () {
+    var t = localStorage.getItem("theme");
+    if (t !== "light" && t !== "dark") {
+      t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+{% if GOATCOUNTER_CODE %}
+<script data-goatcounter="https://{{ GOATCOUNTER_CODE }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{% endif %}
+{% if FEED_ALL_RSS %}
+<link rel="alternate" type="application/rss+xml" title="{{ SITENAME }}"
+      href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">
+{% endif %}
