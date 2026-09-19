@@ -15,6 +15,23 @@
     {% endif %}
   </p>
 
+  {% if article.toc %}
+  {# Open by default on wide screens, collapsed on narrow ones. That default
+     is set in CSS per media query, so <details> (one global `open` attribute)
+     can't express it; this is the standard button/aria-expanded disclosure. #}
+  {% set toc_label = "Содержание" if article.lang == "ru" else "Contents" %}
+  <div class="toc">
+    {# Reader View strips <button> and ignores our stylesheet, so the list
+       would arrive there unlabelled. This heading is the mirror image: hidden
+       on the page, and the only label left once the button is stripped. #}
+    <p class="toc-title">{{ toc_label }}</p>
+    <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-nav">{{ toc_label }}</button>
+    <nav id="toc-nav" aria-label="{% if article.lang == "ru" %}Содержание{% else %}Table of contents{% endif %}">
+      {{ article.toc }}
+    </nav>
+  </div>
+  {% endif %}
+
   {{ article.content }}
 </article>
 

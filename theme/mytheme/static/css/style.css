@@ -34,6 +34,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 17px/1.65 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .site-header, main, .site-footer {
@@ -74,6 +76,10 @@ h1, h2, h3 { line-height: 1.25; }
   letter-spacing: 0.03em;
 }
 
+@media (max-width: 640px) {
+  .article-list time { width: auto; margin-right: 0.6rem; }
+}
+
 .meta .sep { margin: 0 0.3em; color: var(--muted); }
 
 .site-name,
@@ -109,9 +115,117 @@ h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink,
 .headerlink:focus-visible { opacity: 1; }
 @media (hover: none) { .headerlink { opacity: 1; } } /* touch: no hover exists */
 
-@media (max-width: 640px) {
-  .article-list time { width: auto; margin-right: 0.6rem; }
+/* Anchor jumps (and the TOC) shouldn't land headings flush against the top */
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] { scroll-margin-top: 1.25rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* --- Table of contents (plugins/auto_toc.py) ---------------------------- */
+.toc {
+  margin: 1rem 0 1.5rem;
+  font-size: 0.85em;
 }
+
+/* Present only for Reader View (see article.html); never shown on the page */
+.toc-title { display: none; }
+
+.toc-toggle {
+  display: inline-block;
+  text-align: left;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.toc-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 0.45em;
+  border: 0.26em solid transparent;
+  border-left-color: var(--rule);
+  vertical-align: 0.05em;
+  transition: transform 0.15s;
+}
+.toc-toggle:hover { color: var(--text); }
+.toc-toggle:hover::before { border-left-color: var(--muted); }
+.toc-toggle:focus-visible { outline: 1px solid var(--link); outline-offset: 3px; }
+
+.toc nav { margin-top: 0.55rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+/* The rule goes on the list, not on <nav>: in the rail <nav> is a scroll
+   container, and it would clip the marker's 1px overhang at its padding box. */
+.toc nav > ul { border-left: 1px solid var(--rule); }
+.toc ul ul { margin: 0.1rem 0 0.3rem 0.85rem; }
+.toc li {
+  margin: 0.25rem 0;
+  margin-left: -1px; /* the marker sits over the list's 1px rule */
+  padding-left: 0.85rem;
+  border-left: 1px solid transparent;
+}
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.toc code { font-size: 0.9em; background: none; padding: 0; }
+
+/* Collapsed by default; on wide screens the rail is open by default instead.
+   Both are plain CSS defaults, so the correct state is painted before theme.js
+   runs; the [data-open] pair below carries an explicit choice by the reader. */
+.toc > nav { display: none; }
+
+/* Wide screens: float the TOC in the empty right margin beside the text.
+   `main` is 48rem wide (46rem + 1rem padding a side) and centred, so the text
+   column ends at 50% + 23rem. The rail sits 1.5rem to its right and needs
+   13rem of its own, leaving a margin only once the viewport reaches ~77rem. */
+@media (min-width: 78rem) {
+  .toc {
+    position: fixed;
+    top: 12.2rem;
+    left: calc(50% + 23rem + 1.5rem);
+    width: 13rem;
+    /* Stops ~4.5rem short of the bottom, clearing the #to-top button, which
+       shares this corner once the rail is long enough to fill its height. */
+    max-height: calc(100vh - 11rem);
+    display: flex; /* so the label stays put and only the list scrolls */
+    flex-direction: column;
+    margin: 0;
+    font-size: 0.8em;
+  }
+  .toc-toggle { flex: none; }
+  .toc > nav {
+    display: block;
+    position: relative; /* offsetParent for the scroll-into-view maths */
+    min-height: 0; /* let the flex child shrink so it, not .toc, scrolls */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .toc-toggle::before { transform: rotate(90deg); }
+
+  .toc nav { margin-top: 0.7rem; }
+
+  /* The current section, marked against the rule running down the rail */
+  .toc li.active { border-left-color: var(--link); }
+  .toc li.active > a { color: var(--text); }
+}
+
+/* An explicit toggle by the reader overrides the per-mode default above.
+   Higher specificity than the media-query rules, which don't add any. */
+.toc[data-open="1"] > nav { display: block; }
+.toc[data-open="1"] .toc-toggle::before { transform: rotate(90deg); }
+.toc[data-open="0"] > nav { display: none; }
+.toc[data-open="0"] .toc-toggle::before { transform: none; }
+
+/* No JS: nothing can toggle it, so leave it open and drop the affordance */
+html:not(.js) .toc > nav { display: block; }
+html:not(.js) .toc-toggle { cursor: default; }
+html:not(.js) .toc-toggle::before { display: none; }
 
 /* --- Code --------------------------------------------------------------- */
 code {

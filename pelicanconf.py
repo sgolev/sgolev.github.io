@@ -49,6 +49,16 @@ ARCHIVES_SAVE_AS = ""
 DEFAULT_PAGINATION = 20
 
 # ---------------------------------------------------------------------------
+# Plugins
+# ---------------------------------------------------------------------------
+PLUGIN_PATHS = ["plugins"]
+PLUGINS = ["auto_toc"]
+
+# Table of contents (plugins/auto_toc.py -> article.toc)
+TOC_MIN_HEADINGS = 3  # shorter articles get no TOC
+TOC_MAX_DEPTH = 3  # levels below the article's shallowest heading
+
+# ---------------------------------------------------------------------------
 # Jinja: enable the 'do' statement used by the publications macro.
 # NB: overriding JINJA_ENVIRONMENT replaces Pelican's default wholesale
 # (same gotcha as MARKDOWN), so trim/lstrip are restated explicitly.
@@ -136,7 +146,7 @@ EXTERNAL_ARTICLES = [
 ]
 
 # Reading speed used for the "N min" estimate on article pages
-READING_WPM = 200
+READING_WPM = 160
 
 # ---------------------------------------------------------------------------
 # giscus (used by article.html)
