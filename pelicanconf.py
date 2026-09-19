@@ -32,7 +32,7 @@ INDEX_SAVE_AS = "blog/index.html"
 LANDING_URL = ""
 LANDING_SAVE_AS = "index.html"
 
-# favicon.ico, robots.txt, CNAME etc. go here (copied verbatim)
+# Copied verbatim into the output (landing.html uses images/stars.svg)
 STATIC_PATHS = ["images"]
 
 # Keep the theme minimal: no per-author/category/tag pages, no direct archives
@@ -85,22 +85,20 @@ MARKDOWN = {
         "markdown.extensions.footnotes": {},
         "markdown.extensions.md_in_html": {},
         "markdown.extensions.tables": {},
-        # "markdown.extensions.codehilite": {
-        #     "css_class": "highlight",
-        #     "linenums": False,
-        #     "guess_lang": False,  # always tag your fences: ```python
-        # },
-        # "markdown.extensions.extra": {},
         "markdown.extensions.toc": {"permalink": ""},
         "markdown.extensions.meta": {},
     },
     "output_format": "html5",
 }
 
-# No feeds during local dev
+# No feeds during local dev; publishconf.py turns the site-wide pair back on
 FEED_ALL_RSS = None
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+TRANSLATION_FEED_ATOM = None
+TRANSLATION_FEED_RSS = None
 
 # ---------------------------------------------------------------------------
 # Social / SEO metadata (rendered by partials/meta.html)

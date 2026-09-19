@@ -9,7 +9,7 @@
       "type": "debugpy",
       "request": "launch",
       "module": "pelican",
-      "args": ["-lr"]
+      "args": ["-lr", "-b", "0.0.0.0"]
     }
   ]
 }

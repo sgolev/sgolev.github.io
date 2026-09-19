@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.append(os.curdir)
-from pelicanconf import *  # noqa: F401,F403
+from pelicanconf import *
 
 # For a project page this is https://yourname.github.io/yourrepo
 # For a user page (repo named yourname.github.io) drop the path part.

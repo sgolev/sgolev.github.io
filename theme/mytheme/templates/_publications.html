@@ -3,12 +3,12 @@
    dates are tz-aware (Pelican articles) or naive (config entries).
    Language: local articles use their Lang: metadata (defaults to DEFAULT_LANG),
    external entries an optional "lang" key. #}
-{% macro publication_list(articles, external, format=None, siteurl=SITEURL, limit=None) %}
+{% macro publication_list(articles, external, format=None, limit=None) %}
 {% set combined = [] %}
 {% for a in articles or [] %}
   {% do combined.append({
        "title": a.title,
-       "url": siteurl ~ "/" ~ a.url,
+       "url": SITEURL ~ "/" ~ a.url,
        "date": a.date,
        "sortkey": a.date.strftime("%Y%m%d%H%M"),
        "source": None,

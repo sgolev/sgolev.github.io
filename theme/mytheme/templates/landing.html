@@ -1,4 +1,4 @@
-{% import "_publications.html" as pubs %}
+{% import "_publications.html" as pubs with context %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,6 @@
     a:active { color: var(--accent); text-decoration-color: var(--accent); }
     .content { width: 100%; max-width: 860px; }
     .pathbar { display: flex; align-items: baseline; gap: 0.55em; color: var(--dim); font-size: 13px; letter-spacing: 0.30em; text-transform: uppercase; margin-bottom: 20px; }
-    .pathbar .rule { flex: 1; height: 1px; background: var(--rule); }
     .title { font-size: 76px; line-height: 0.86; font-weight: 600; letter-spacing: -0.01em; color: var(--accent); transform: scaleY(0.92); transform-origin: left top; margin: 0 0 26px -2px; }
     .cursor { display: inline-block; width: 0.5em; height: 0.86em; background: var(--accent); margin-left: 0.12em; transform: translateY(0.06em); animation: blink 1.1s step-end infinite; }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -84,7 +83,6 @@
       margin-left: auto;
       border: 1px solid var(--rule);
       background: var(--btn-bg);
-      color: var(--text);
       border-radius: 6px;
       padding: 0.15rem 0.5rem;
       font-size: 1rem;

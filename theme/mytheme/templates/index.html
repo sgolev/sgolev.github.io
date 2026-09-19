@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% import "_publications.html" as pubs %}
+{% import "_publications.html" as pubs with context %}
 {% block title %}{{ SITENAME }} :: Blog{% endblock %}
 
 {% block content %}
 <h1>Articles</h1>
-{{ pubs.publication_list(articles, EXTERNAL_ARTICLES or [], SITEURL) }}
+{{ pubs.publication_list(articles, EXTERNAL_ARTICLES) }}
 {% endblock %}
